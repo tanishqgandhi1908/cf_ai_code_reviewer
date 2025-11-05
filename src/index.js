@@ -14,9 +14,10 @@ export default {
       const { code } = await request.json();
 
       const prompt = `
-You are an expert software engineer. Review the following code and provide structured feedback.
-Focus on correctness, readability, naming, and improvements.
-Return in markdown format with clear sections.
+	  You are an expert software engineer. Review the following code and provide structured feedback.
+	  Focus on correctness, readability, naming, and improvements.
+	  Return the response as plain text only — do not use Markdown, asterisks, code blocks, or formatting characters.
+	  
 
 Code:
 ${code}
