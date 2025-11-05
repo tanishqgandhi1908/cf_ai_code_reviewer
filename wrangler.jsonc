@@ -1,0 +1,26 @@
+{
+	"name": "cf-ai-code-reviewer",
+	"main": "src/index.js",
+	"compatibility_date": "2024-11-03",
+	"assets": {
+	  "directory": "./public"
+	},
+	"durable_objects": {
+	  "bindings": [
+		{
+		  "name": "REVIEW_SESSIONS",
+		  "class_name": "ReviewSession"
+		}
+	  ]
+	},
+	"migrations": [
+	  {
+		"tag": "v1",
+		"new_sqlite_classes": ["ReviewSession"]
+	  }
+	],
+	"ai": {
+	  "binding": "AI"
+	}
+  }
+  

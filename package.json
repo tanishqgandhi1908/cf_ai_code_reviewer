@@ -1,0 +1,14 @@
+{
+	"name": "cf-ai-code-reviewer",
+	"version": "1.0.0",
+	"description": "An AI-powered code review tool using Cloudflare Workers AI and Durable Objects.",
+	"type": "module",
+	"scripts": {
+	  "dev": "wrangler dev",
+	  "deploy": "wrangler deploy"
+	},
+	"devDependencies": {
+	  "wrangler": "^3.0.0"
+	}
+  }
+  

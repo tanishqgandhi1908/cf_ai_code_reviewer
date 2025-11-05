@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloudflare AI Code Reviewer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>🤖 Cloudflare AI Code Reviewer</h1>
+  <textarea id="code" placeholder="Paste your code here..."></textarea>
+  <button id="reviewBtn">Review Code</button>
+  <button id="historyBtn">View History</button>
+
+  <pre id="feedback">Waiting for input...</pre>
+
+  <script>
+    const codeBox = document.getElementById("code");
+    const feedback = document.getElementById("feedback");
+
+    document.getElementById("reviewBtn").addEventListener("click", async () => {
+      const code = codeBox.value.trim();
+      if (!code) return (feedback.textContent = "⚠️ Please enter some code");
+
+      feedback.textContent = "⏳ Reviewing your code...";
+      const res = await fetch("/review", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code }),
+      });
+      const data = await res.json();
+      feedback.innerHTML = data.feedback;
+    });
+
+    document.getElementById("historyBtn").addEventListener("click", async () => {
+      feedback.textContent = "📜 Loading history...";
+      const res = await fetch("/history");
+      const data = await res.json();
+      feedback.innerHTML = data
+        .map(h => `🕒 ${new Date(h.ts).toLocaleString()}\n${h.feedback}`)
+        .join("\n\n---\n\n");
+    });
+  </script>
+</body>
+</html>
