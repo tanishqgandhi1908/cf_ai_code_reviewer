@@ -27,3 +27,17 @@ This app lets users paste code, and get instant AI-generated feedback on correct
 | **State** | Durable Objects (SQLite-based) |
 | **Frontend** | Static HTML + Vanilla JS |
 | **Deployment** | Wrangler CLI |
+
+## Running Locally
+
+1. **Install Wrangler**
+   ```bash
+   npm install -g wrangler
+   npx wrangler dev
+   Visit http://localhost:8787
+2. Curl Command
+```bash
+	 curl -X POST "https://cf-ai-code-reviewer.<yourname>.workers.dev/review" \
+  -H "Content-Type: application/json" \
+  -d '{"code": "async function fetchData(url){ const data = fetch(url); return data.json(); }"}'
+
